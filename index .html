@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>童翼职启 | AI赋能小学生职业体验公益工作坊</title>
+    <!-- 引入Google Fonts提升高级感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e2a3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 蓝白基调容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* 全屏Banner区 — 蓝白简约大气 */
+        .hero {
+            background: linear-gradient(135deg, #eef5ff 0%, #d9eaff 100%);
+            padding: 80px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 70, 120, 0.08);
+            position: relative;
+        }
+
+        .hero .container {
+            max-width: 960px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(120deg, #0B3B5F, #1B7E9F);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #2c5a7a;
+            max-width: 720px;
+            margin: 0 auto;
+            font-weight: 400;
+            border-top: 2px solid rgba(27, 126, 159, 0.2);
+            display: inline-block;
+            padding-top: 16px;
+        }
+
+        /* 章节通用样式 */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0B3B5F;
+            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #2c9cd4;
+            border-radius: 4px;
+        }
+
+        .section-sub {
+            color: #4a627a;
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+            max-width: 720px;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s ease;
+            border: 1px solid #eef2fa;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 48px -12px rgba(0, 64, 96, 0.12);
+            border-color: #cbe4fe;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #135b7a;
+        }
+
+        .badge {
+            background: #e9f4fc;
+            color: #0f6b8c;
+            border-radius: 40px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .text-muted {
+            color: #4f6f8f;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: #2c9cd4;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 4px;
+            top: -2px;
+        }
+
+        .profession-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .profession-category {
+            flex: 1;
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 24px;
+            border: 1px solid #e2edf7;
+        }
+
+        .profession-category h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #0e4b6e;
+            border-left: 4px solid #2c9cd4;
+            padding-left: 16px;
+        }
+
+        .profession-category ul {
+            list-style: none;
+        }
+
+        .profession-category li {
+            padding: 8px 0 8px 24px;
+            border-bottom: 1px solid #e9f0f5;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .profession-category li:last-child {
+            border-bottom: none;
+        }
+
+        .profession-category li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #2c9cd4;
+        }
+
+        .contact-info {
+            background: #f5faff;
+            border-radius: 32px;
+            padding: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2edf7;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0B3B5F;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-answer {
+            color: #2c4c6e;
+            padding-left: 26px;
+        }
+
+        .btn-outline {
+            border: 1px solid #2c9cd4;
+            background: transparent;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #1c6f96;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: #2c9cd4;
+            color: white;
+        }
+
+        footer {
+            background-color: #f8fbfe;
+            text-align: center;
+            padding: 32px 0;
+            color: #5b7c9e;
+            font-size: 0.85rem;
+            border-top: 1px solid #e9f0f5;
+        }
+
+        @media (max-width: 800px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .grid-2col, .grid-3col {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .container {
+                padding: 0 24px;
+            }
+            section {
+                padding: 56px 0;
+            }
+            .profession-grid {
+                flex-direction: column;
+            }
+        }
+
+        .stat-number {
+            font-weight: 800;
+            font-size: 2rem;
+            color: #1b7e9f;
+        }
+        .intro-highlight {
+            background: #eef7fc;
+            border-radius: 28px;
+            padding: 28px;
+            margin-top: 20px;
+        }
+        .phone-link {
+            color: #1b7e9f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Banner 全屏蓝白简约 -->
+<div class="hero">
+    <div class="container">
+        <h1 class="hero-title">童翼职启<br>AI赋能小学生职业体验公益工作坊</h1>
+        <div class="hero-sub">公益普惠 · 科技启蒙 · 扎根四平 · 赋能未来</div>
+    </div>
+</div>
+
+<!-- 项目介绍 (完整项目概述段落，首板块内容) -->
+<section style="padding-top: 64px;">
+    <div class="container">
+        <div class="intro-highlight">
+            <p style="font-size: 1.08rem; line-height: 1.6; color: #1e3a4d;">✨ <strong>项目介绍</strong> —— 本项目由9名教育相关专业大学生组建、专业教师指导，依托吉林师范大学资源落地。项目紧扣国家素质教育政策，精选教师、科学家、医生三大领域9个适配职业，融入四平地域特色文化。采用“公益普惠工作坊+高校进阶体验营”模式，以AI、AR技术打造沉浸式体验，通过趣味讲解、模拟实操、职场探访开展职业启蒙。坚持公益为本、收费反哺升级，拥有专业团队、标准化运营与全流程风险管控，立足四平、辐射周边，打造区域小学生职业启蒙公益标杆项目。</p>
+        </div>
+    </div>
+</section>
+
+<!-- 1. 项目简介 Project Intro （背景+宗旨+模式）-->
+<section>
+    <div class="container">
+        <h2 class="section-title">项目简介</h2>
+        <div class="grid-2col" style="margin-top: 32px;">
+            <div class="card">
+                <div class="badge">政策导向</div>
+                <h3>项目背景</h3>
+                <p>响应小学生职业启蒙教育短板、国家素质教育 & 职业教育政策号召。在基础教育阶段开展前瞻性职业认知，填补生涯教育空白。</p>
+            </div>
+            <div class="card">
+                <div class="badge">初心愿景</div>
+                <h3>项目宗旨</h3>
+                <p><strong>公益为核</strong>，扎根四平本地教育<br>
+                <strong>实践为基</strong>，赋能少儿职业启蒙</p>
+            </div>
+            <div class="card" style="grid-column: span 2;">
+                <div class="badge">创新模式</div>
+                <h3>项目模式</h3>
+                <p>“公益普惠工作坊 + 进阶深度体验营”分层模式，满足不同层次需求，让每个孩子都能触摸职业理想。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. 产品与服务 Products & Services -->
+<section style="background-color: #fbfeff;">
+    <div class="container">
+        <h2 class="section-title">产品与服务</h2>
+        <div class="section-sub">小学生职业体验营活动 · 多元化沉浸式职业启蒙</div>
+        <div class="grid-3col">
+            <div class="card">
+                <h3>📢 多元化职业讲解服务</h3>
+                <p>邀请一线从业者面对面分享，以真实故事激发孩子对职业的尊重与向往，建立立体职业认知。</p>
+            </div>
+            <div class="card">
+                <h3>🎮 沉浸式职场模拟服务</h3>
+                <ul class="feature-list">
+                    <li>利用专业教具，模拟真实工作场景与内容</li>
+                    <li>定制“职业认知趣味卡片”，卡片配对游戏娱乐中识职业</li>
+                    <li>结合AI互动视频、AR眼镜、AI智能体等技术，打造沉浸式多媒体体验</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🏛️ 职场实践小舞台</h3>
+                <p>依托吉林省与四平本地真实职场资源，国家认定的研学实践教育基地、高校实验室、科研院所、医院、田间农场等，组织实地探访。<br>
+                走进高校实验室、医院儿科诊室、田间农场……让孩子感受知识应用，深化职业认知，激发探索兴趣。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. 九大职业体验库 Nine Professional Experience Libraries -->
+<section>
+    <div class="container">
+        <h2 class="section-title">九大职业体验库</h2>
+        <p class="section-sub">精选3大领域、9大细分职业完整体系，深度匹配小学生认知发展规律</p>
+        <div class="profession-grid">
+            <div class="profession-category">
+                <h4>📚 教育教学类</h4>
+                <ul>
+                    <li>普通高等学校教师</li>
+                    <li>教育学研究人员</li>
+                    <li>物理学研究人员</li>
+                </ul>
+            </div>
+            <div class="profession-category">
+                <h4>🔬 科学研究类</h4>
+                <ul>
+                    <li>哲学研究人员</li>
+                    <li>生物学研究人员</li>
+                    <li>农业科学研究人员</li>
+                </ul>
+            </div>
+            <div class="profession-category">
+                <h4>🏥 医疗健康类</h4>
+                <ul>
+                    <li>儿科医师</li>
+                    <li>宠物医师</li>
+                    <li>中医推拿医师</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. 项目特色与创新 Features -->
+<section style="background: linear-gradient(100deg, #ffffff 0%, #f6fbff 100%);">
+    <div class="container">
+        <h2 class="section-title">项目特色与创新</h2>
+        <div class="grid-3col">
+            <div class="card">
+                <h3>🤖 AI 赋能</h3>
+                <p>在体验营活动中融合AR、AI数字人、3D互动等前沿技术，让职业启蒙突破时空限制，智趣非凡。</p>
+            </div>
+            <div class="card">
+                <h3>❤️ 公益普惠</h3>
+                <p>依托学校第二课堂兴趣活动课等形式免费进校园，让每个孩子平等享受优质的职业启蒙资源。</p>
+            </div>
+            <div class="card">
+                <h3>🗺️ 地域特色</h3>
+                <p>深度绑定吉林师范大学一流学科、四平市玉米产业、长白山生态、叶赫满族文化、本地儿科医疗等资源，形成不可复制的地域教育产品，区别于通用化职业启蒙。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. 体验收获 Experience and Gain -->
+<section>
+    <div class="container">
+        <h2 class="section-title">体验收获</h2>
+        <div class="grid-2col">
+            <div>
+                <ul class="feature-list" style="margin-top: 8px;">
+                    <li><strong>职业认知</strong> – 打破职业刻板印象，建立正确职业观</li>
+                    <li><strong>能力提升</strong> – 锻炼动手、表达、逻辑思维、团队协作</li>
+                    <li><strong>兴趣发掘</strong> – 提前发现孩子天赋与未来兴趣方向</li>
+                    <li><strong>文化浸润</strong> – 融入四平红色文化、叶赫满族文化、长白山生态、黑土地、玉米乡土文化</li>
+                    <li><strong>素养培养</strong> – 塑造耐心、责任、爱心等优良品格</li>
+                </ul>
+            </div>
+            <div class="intro-highlight" style="background: #eef2fc; padding: 24px;">
+                <p style="font-weight: 500;">“在玩耍中认知，在实践中成长——从家乡文化到广阔职业舞台，每个孩子都是未来的探索家。”</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. 团队介绍 Team -->
+<section style="background: #f9fdfe;">
+    <div class="container">
+        <h2 class="section-title">团队介绍</h2>
+        <div class="card" style="background: #ffffff; margin-top: 16px;">
+            <p style="font-size: 1.05rem;">项目团队共9名成员，专业配置涵盖小学教育、教育学、学前教育等多个教育相关领域，全员拥有扎实完备的教育理论功底。<br><br>
+            大家依托自身专业积淀，熟知小学生身心成长规律、认知发展特点与行为心理特质，能够精准洞悉不同年龄段孩童的喜好与实际需求，可贴合孩子特性设计职业体验内容，用适配孩童的方式开展引导陪伴，让家长安心托付孩子参与体验活动。</p>
+            <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+                <span class="badge">小学教育</span>
+                <span class="badge">教育学</span>
+                <span class="badge">学前教育</span>
+                <span class="badge">儿童心理学专长</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. 参与模式 & 报名须知 -->
+<section>
+    <div class="container">
+        <h2 class="section-title">参与模式 & 报名须知</h2>
+        <div class="grid-2col">
+            <div class="card">
+                <h3>🎯 公益普惠工作坊</h3>
+                <p><strong>免费进校园</strong>，小学兴趣课、第二课堂专属，让职业启蒙走进日常教学。</p>
+                <h3 style="margin-top: 28px;">🎓 进阶深度体验营</h3>
+                <p><strong>49.9 元/人</strong>，周末/假期开设，沉浸式AI互动+职场实地参访+职业工作坊。</p>
+                <h3 style="margin-top: 28px;">💚 公益免费专场</h3>
+                <p>教师子女、医护子女、乡村儿童专属免费名额，让爱与教育平等流动。</p>
+            </div>
+            <div class="card">
+                <h3>📅 适合年龄</h3>
+                <p><span class="stat-number">小学 3–6 年级</span><br>认知发展黄金期，职业兴趣探索关键阶段。</p>
+                <h3 style="margin-top: 24px;">📝 参与流程</h3>
+                <ul class="feature-list">
+                    <li>学校合作报名：联系项目组对接，校内开课</li>
+                    <li>家长自主报名：关注工作坊公告，直接预约体验营名额</li>
+                </ul>
+                <p class="text-muted" style="margin-top: 16px;">*进阶体验营名额有限，以报名顺序为准，提供安全保障与成长记录。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8. 常见 FAQ 问答专区 -->
+<section style="background-color: #fafdff;">
+    <div class="container">
+        <h2 class="section-title">常见问答</h2>
+        <div class="faq-item">
+            <div class="faq-question">❓ 孩子参加职业体验有什么用？</div>
+            <div class="faq-answer">开拓视野，打破“职业偏见”，在游戏中认知社会分工，提升动手与协作能力，为未来生涯规划埋下积极的种子。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ 体验营适合几年级孩子？</div>
+            <div class="faq-answer">主要面向小学3–6年级学生，该阶段孩子理解能力与好奇心并重，最适宜沉浸式职业启蒙。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ 校内公益课怎么申请合作？</div>
+            <div class="faq-answer">学校可通过电话18918824490或发送合作意向至项目对接人，我们将安排专人对接，免费送课入校。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ 进阶体验营包含哪些内容？</div>
+            <div class="faq-answer">AI互动职业模拟+职场实地探访（高校实验室/医院/田间等）+职业趣味卡片工坊+专业导师全程陪伴，最后颁发实践证书。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ 活动安全如何保障？</div>
+            <div class="faq-answer">团队拥有标准化运营与全流程风险管控体系，师生比不低于1:5，并为每位参与营员购买意外保险，志愿者全程看护。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ 是否有证书、成长记录？</div>
+            <div class="faq-answer">完成进阶体验营将获得“职业启蒙实践证书”，并附个性化成长观察记录，帮助家长看见孩子的闪光点。</div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. 联系我们 Contact -->
+<section>
+    <div class="container">
+        <h2 class="section-title">联系我们</h2>
+        <div class="contact-info">
+            <div>
+                <h3 style="font-weight: 600; margin-bottom: 8px;">📞 项目对接联系方式</h3>
+                <p><a href="tel:18918824490" class="phone-link">189-1882-4490</a> (微信同号)</p>
+                <h3 style="font-weight: 600; margin: 20px 0 8px;">🏫 合作学校申请入口</h3>
+                <p>致电 <a href="tel:18918824490" class="phone-link">18918824490</a> 或邮件合作洽谈</p>
+                <h3 style="font-weight: 600; margin: 20px 0 8px;">🤝 公益合作 · 企业赞助咨询</h3>
+                <p>同样欢迎联系 18918824490 共建儿童公益未来</p>
+            </div>
+            <div>
+                <h3 style="font-weight: 600; margin-bottom: 12px;">📍 地址</h3>
+                <p>吉林师范大学（四平校区）<br>吉林省四平市铁西区海丰大街1301号</p>
+                <div style="margin-top: 20px;">
+                    <span class="badge" style="background: #e0f0fa;">公益标杆项目</span>
+                    <span class="badge" style="background: #e0f0fa;">AI赋能教育</span>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 28px; font-size: 0.85rem; color: #3a6b8f;">欢迎各小学、教育机构、公益伙伴携手，让每个孩子拥有发现热爱的翅膀。</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2025 童翼职启公益工作坊 | 依托吉林师范大学教育资源 | 立足四平 辐射周边</p>
+        <p style="margin-top: 8px;">公益普惠 · AI赋能 · 职业启蒙点亮未来</p>
+    </div>
+</footer>
+
+</body>
+</html>
